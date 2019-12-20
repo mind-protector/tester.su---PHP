@@ -9,4 +9,4 @@ The site has been developed on Windows using OpenServer for testing. Code Writin
 P.S.
 
 - Internet Explorer version >= 9 
-- You need to unpack twig.zip and phpmailer.zip in includes/.../vendor
+- To make this repository I packed twig, phpmailer and symfony libraries to .zip
