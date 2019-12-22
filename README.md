@@ -4,7 +4,7 @@ The site include full process of registration/authorization. There are 4 forms w
 
 TO DEVELOPERS:
 
-The site has been developed on Windows using OpenServer for testing. Code Writing Approach is OOP. Bugs is not detected. Using HTML5/CSS3, PHP v.7, JavaScript, SQL (indirectly).
+The site has been developed on Windows using OpenServer for testing. Code Writing Approach is OOP. Bugs is not detected. Using HTML5/CSS3, PHP v7.1.0, JavaScript, SQL (indirectly).
 
 P.S.
 
