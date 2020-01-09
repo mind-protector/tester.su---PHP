@@ -1,0 +1,44 @@
+.user__data {
+	padding-left: 6px;
+}
+
+/* User data */
+
+table {
+	border-spacing: 0;
+}
+
+TD.leftcol {
+	vertical-align: top;
+}
+
+TD.rightcol {
+	padding-left: 6px;
+}
+
+.data {
+	padding-left: 5px;
+	padding-right: 10px;
+	border-right: 1px solid #FAE79D;
+}
+
+.change__data {
+	padding-left: 5px;
+	font-size: 15px;
+}
+
+/* The Form */
+
+#avatar:hover {
+	cursor: pointer;
+}
+
+#reCAPTCHA_token {
+	display: none;
+	padding-top: 5px;
+	padding-bottom: 7px;
+}
+
+.button__entry {
+	padding-top: 5px;
+}
