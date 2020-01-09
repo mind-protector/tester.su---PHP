@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+
+{% block title %} {{ user['login'] }} {% endblock %}
+
+{% block head %}
+
+	{% if user['id'] == id %}
+
+		<link rel="stylesheet" href="templates/styles/ownerprofile.css" type="text/css">
+		<script>
+
+			var visible = false;
+
+			function showForm() {
+				if (visible) {
+			        document.getElementById('reCAPTCHA_token' ).style.display = 'none';
+			        visible = false;
+			    } else {
+			        document.getElementById('reCAPTCHA_token' ).style.display = 'block';
+			        visible = true;
+			    }
+			}
+
+		</script>
+
+	{% else %}
+
+		<link rel="stylesheet" href="templates/styles/userprofile.css" type="text/css">
+
+	{% endif %}
+
+{% endblock %}
+
+{% block content %}
+
+	<div class="user__data">
+
+		{% if user['id'] == id %}
+
+			<table>
+				<tr>
+					<td class="leftcol"><img id="avatar" src="{{ avatar }}" width="156" height="176" onclick="showForm()" alt="login"></td>
+			    	<td class="rightcol" valign="top">
+
+			    		<p>
+			    			<span class="data">Login: {{ user['login'] }}</span>
+			    			<a class="change__data" href="change-login.php">Change</a>
+			    		</p>
+
+			    		<p>
+			    			<a class="change__data" href="change-email.php">Change email</a>
+			    		</p>
+
+			    		<p>
+			    			<a class="change__data" href="change-password.php">Change password</a>
+			    		</p>
+
+			    	</td>
+				</tr>
+	 		</table>
+
+	 	{% else %}
+
+			<table>
+				<tr>
+					<td class="leftcol"><img id="avatar" src="{{ user['avatar'] }}" width="156" height="176" alt="login"></td>
+			    	<td class="rightcol" valign="top">
+
+			    		<p>
+			    			<span class="data">Username: {{ user['login'] }}</span>
+			    		</p>
+
+			    	</td>
+				</tr>
+	 		</table>
+
+		{% endif %}
+
+		{% if user['id'] == id %}
+
+			<form id="reCAPTCHA_token" action="/profile.php" enctype="multipart/form-data" method="POST">
+
+				 <input type="hidden" name="MAX_FILE_SIZE" value="1000000">
+
+				<input type="file" name="image" accept="image/*,image/jpeg,image/png,image/jpg"><br>
+
+				<div class="button__entry">
+					<button type="submit" class="g-recaptcha" data-sitekey="{{ sitekey }}" data-callback="onSubmit"
+					data-theme="dark">Submite</button>
+				</div>
+
+			</form>
+
+			<div class="logout"><a href="logout.php">Sign out</a></div>
+
+		{% endif %}
+
+	</div>
+	
+{% endblock %}

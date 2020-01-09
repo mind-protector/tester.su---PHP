@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}Account recovery{% endblock %}
+
+{% block content %}
+
+	<label>We will send to your email addres your login and new password</label>
+	<form id="reCAPTCHA_token" action="/recovery.php" method="POST">
+
+		<p>
+			<p><b>Your email:</b></p>
+			<input type="email" name="email" placeholder="example@mail.com" required>
+		</p>
+
+		<p>
+			<button type="submit" class="g-recaptcha" data-sitekey="{{ sitekey }}" data-callback="onSubmit"
+			data-theme="dark">Submite</button>
+		</p>
+
+	</form>
+
+	{% if account_datas %}
+		<p style="position: absolute; bottom: 0; padding-bottom: 60px;">
+			Because mail.ru always blocking my email address you can see your
+			login - {{ account_datas['login'] }} and new password: {{ account_datas['password'] }}
+		</p>
+	{% endif %}
+	
+{% endblock %}
