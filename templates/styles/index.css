@@ -1,0 +1,44 @@
+.text {
+	font-size: 24px;
+}
+
+hr {
+	border: none;
+    color: #FAE79D;
+    background-color: #FAE79D;
+    height: 2px;
+}
+
+.question {
+	border: 1px solid #FAE79D;
+	display: inline-block;
+	padding: 1px;
+	padding-right: 4px;
+	margin-right: 10px;
+}
+
+.question :hover {
+	cursor: pointer;
+}
+
+TD.leftcol {
+	padding-top: 4px;
+	vertical-align: top;
+}
+
+TD.rightcol {
+	display: inline-block;
+	padding-left: 6px;
+}
+
+.question__data {
+	display: block;
+}
+
+.pagination {
+	margin-top: 15px;
+}
+
+.pagination__item {
+	font-size: 18px;
+}

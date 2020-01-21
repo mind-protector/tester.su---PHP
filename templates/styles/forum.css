@@ -1,0 +1,22 @@
+.title {
+	font-size: 32px;
+}
+
+.question__data {
+	margin-bottom: 10px;
+}
+
+.first-child {
+	padding-right: 10px;
+	border-right: 1px solid #FAE79D;
+}
+
+.last-child {
+	display: inline-block;
+	padding-left: 10px;
+}
+
+.preview {
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
