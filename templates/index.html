@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+
+{% block head %}
+
+	<link rel="stylesheet" href="templates/styles/index.css" type="text/css">
+
+	<script type="text/javascript">
+		
+		function redirect(id) {
+			location.replace("http://tester.su/forum.php?id=" + id);
+		}
+
+	</script>
+
+{% endblock %}
+
+{% block title %}Main{% endblock %}
+
+{% block content %}
+
+	{% if user %}
+
+		<p><a href="ask.php" class="text">Ask question</a></p>
+		<hr>
+
+		<div class="top__questions">
+
+			<p class="text">Popular questions today:</p>
+
+			{% set i = 0 %}
+			{% block questions_pool %}
+
+				{% if questions %}
+
+					<table>
+						<tr>
+							{% for j in 0..4 %}
+
+								{% block question_preview %}
+
+									{% if questions[i][j] %}
+
+										<table class="question" onclick="redirect( {{ questions[i][j]['id'] }} )">
+											<tr>
+												<td class="leftcol"><img src="{{ questions[i][j]['preview'] }}" width="64" height="64" alt="avatar"></td>
+												<td class="rightcol" valign="top">
+													<span>
+														<span class="question__data">{{ questions[i][j]['title'] }}</span>
+														<span class="question__data">Author: {{ questions[i][j]['author'] }}</span>
+														<span class="question__data">Просмотров: {{ questions[i][j]['views'] }}</span>
+														<span class="question__data">Дата публикации: {{ questions[i][j]['date'] }}</span>
+													</span>
+
+												</td>
+											</tr>
+										</table>
+
+									{% endif %}
+
+								{% endblock %}
+
+							{% endfor %}
+							<br><br>
+						</tr>
+
+						<tr>
+							{% for j in 5..9 %}
+
+								{{ block('question_preview') }}
+
+							{% endfor %}
+						</tr>
+					</table>
+
+				{% else %}
+
+					<p>Questions not found...</p>
+
+				{% endif %}
+
+			{% endblock %}
+
+		</div>
+
+		<br>
+		<hr>
+
+		<div class="all__questions">
+
+			<p class="text">All question ({{ all }}):</p>
+
+			{% set i = 1 %}
+			{{ block('questions_pool') }}
+
+			<div class="pagination">
+				<a href="/index.php?page={{ p[0] }}" class="pagination__item">{{ p[0] }}</a>
+				<a href="/index.php?page={{ p[1] }}" class="pagination__item">{{ p[1] }}</a>
+				<a href="/index.php?page={{ p[2] }}" class="pagination__item">{{ p[2] }}</a>
+				...
+				<a href="/index.php?page={{ p|last }}" class="pagination__item">{{ p|last }}</a>
+			</div>
+
+		</div>
+
+	{% else %}
+
+		<p><a href="/signup.php" class="text">To sign up</a></p>
+		<p><a href="/login.php" class="text">To entry</a></p>
+
+	{% endif %}
+	
+{% endblock %}

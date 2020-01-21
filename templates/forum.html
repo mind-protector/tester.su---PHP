@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block head %}
+
+	<link rel="stylesheet" href="templates/styles/forum.css" type="text/css">
+
+{% endblock %}
+
+{% block title %} {{ data['title'] }} {% endblock %}
+
+{% block content %}
+
+	<p class="title"> {{ data['title'] }} </p>
+
+	<span class="question__data first-child">Author: {{ data['name'] }}</span>
+	<div class="question__data last-child">Publication date: {{ data['date'] }} </div>
+
+	<div class="question__data">Views: {{ data['views'] }}</div>
+
+	<div class="question__data preview"><img src="{{ data['image'] }}" width="256" height="256"></div>
+
+	<pre class="question__data">{{ data['text'] }}</pre>
+	
+{% endblock %}

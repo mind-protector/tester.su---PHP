@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}Ask a question{% endblock %}
+
+{% block content %}
+
+	<form id="reCAPTCHA_token" action="/ask.php" enctype="multipart/form-data" method="POST">
+		
+		<input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+		<p>
+			<p><b>Preview:</b></p>
+
+			<input type="hidden" name="MAX_FILE_SIZE" value="1000000">
+
+			<input type="file" name="image" accept="image/*,image/jpeg,image/png,image/jpg"><br>
+		</p>
+
+		<p>
+			<p><b>Question title:</b></p>
+			<input type="text" name="title" placeholder="e.g. How to wash a cat?" maxlength="86" required>
+		</p>
+
+		<p>
+			<p><b>Body:</b></p>
+			<textarea type="text" name="text" cols="40" rows="8" maxlength="1000" required></textarea>
+		</p>
+
+		<p>
+			<button type="submit" class="g-recaptcha" data-sitekey="{{ sitekey }}" data-callback="onSubmit"
+			data-theme="dark">Post your question</button>
+		</p>
+
+	</form>
+
+{% endblock %}

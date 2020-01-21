@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}Change email{% endblock %}
+
+{% block content %}
+
+	<label>We will send to your new email address activation link</label>
+	<form id="reCAPTCHA_token" action="/change-email.php" method="POST">
+
+		<input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+		<p>
+			<p><b>New email:</b></p>
+			<input type="email" name="email" placeholder="example@mail.com" required maxlength="129">
+		</p>
+
+		<p>
+			<button type="submit" class="g-recaptcha" data-sitekey="{{ sitekey }}" data-callback="onSubmit"
+			data-theme="dark">Change</button>
+		</p>
+
+	</form>
+
+	{% if link %}
+		<p style="position: absolute; bottom: 0; padding-bottom: 60px;">
+			Because mail.ru always blocking my email address you can see the activation link:
+			<a href=" {{ link }} ">{{ link }}</a>
+		</p>
+	{% endif %}
+	
+{% endblock %}

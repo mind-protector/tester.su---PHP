@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>{% block title %}{% endblock %}</title>
+		<link rel="stylesheet" href="templates/styles/base.css" type="text/css">
+		<meta charset="utf-8">
+		{% block head %}{% endblock %}
+
+		<script src="https://www.google.com/recaptcha/api.js?hl=en" async defer></script>
+		<script>
+
+			function onSubmit(token) {
+			  document.getElementById("reCAPTCHA_token").submit();
+			}
+
+		</script>
+		{% set sitekey = '6LcyjscUAAAAANUQbOXnVs1qFKi4eFhM-Zkmdjt-' %}
+		{% if not avatar %}
+			{% set avatar = '/cloud/avatars/none.jpg' %}
+		{% endif %}
+
+	</head>
+	<body link="#FAE79D" vlink="#F5D07F" alink="#FFFFFF">
+
+		<div class="nav">
+			<div class="left">
+				<a href="/index.php" class="nav__item">Main page</a>
+				<a href="/info.php" class="nav__item">Secret Room</a>
+			</div>
+			<div class="right">
+				<img class="round__avatar" src="{{ avatar }}" width="32" height="32" align="center">
+				<a href="/profile.php" class="nav__item">Your profile</a>
+			</div>
+		</div>
+
+		<p>
+			{% if message_color == 'red'  %}
+				<div class="warning">
+					{% for item in message %}
+						<b>{{ item }}</b><br>
+					{% endfor %}
+				</div>
+			{% elseif message_color == 'green' %}
+				<div class="message">
+					<b>{{ message }}</b>
+				</div>
+			{% endif %}
+		</p>
+
+		{% block content %}{% endblock %}
+
+		<div class="footer">
+			<p>Copyright © 2019 Tester Inc. All <a href="copyright.php">rights</a> reserved.</p>
+		</div>
+
+	</body>
+</html>

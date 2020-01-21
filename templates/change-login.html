@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}Change login{% endblock %}
+
+{% block content %}
+
+	<form id="reCAPTCHA_token" action="/change-login.php" method="POST">
+		
+		<input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+		<p>
+			<p><b>New login:</b></p>
+			<input type="text" name="login" placeholder="Jack322" required maxlength="32">
+		</p>
+
+		<p>
+			<button type="submit" class="g-recaptcha" data-sitekey="{{ sitekey }}" data-callback="onSubmit"
+			data-theme="dark">Change</button>
+		</p>
+
+	</form>
+
+{% endblock %}
