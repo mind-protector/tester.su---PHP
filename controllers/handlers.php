@@ -798,6 +798,29 @@ final class LoginHandler extends Base
 	 */
 
 	use validLogin, validPassword;
+	
+	/**
+	 * @param array $post is users input
+	 *
+	 * @return void
+	 */
+	public function __construct( $post, $id )
+	{
+		parent::__construct( $post );
+		
+		/**
+		 * @var object
+		 */
+		$this->user = R::findOne( 'users', 'login = ?', array( $this->login ) );
+		
+		if ( !$this->user )
+		{
+			$this->user = R::findOne( 'users', 'email = ?', array( $this->login ) );
+		} else
+		{
+			$this->errors[] = array( 'User not found!' );
+		}
+	}
 
 	/**
 	 * Checking login for valid and commit errors, if any.
@@ -814,26 +837,9 @@ final class LoginHandler extends Base
 			$this->errors[] = self::isLogin( $this->login );
 		}
 
-		$user = R::findOne( 'users', 'login = ?', array( $this->login ) );
-		if ( !$user )
-		{
-			$user = R::findOne( 'users', 'email = ?', array( $this->login ) );
-		}
-
 		if ( self::isPassword( $this->password ) )
 		{
 			$this->errors[] = self::isPassword( $this->password );
-		}
-
-		if ( $user )
-		{
-			if ( !password_verify( $this->password, $user->password ) )
-			{
-				$this->errors[] = array( 'Password is incorrect!' );
-			}
-		} else
-		{
-			$this->errors[] = array( 'User not found!' );
 		}
 
 		return $this->errors;
@@ -846,7 +852,7 @@ final class LoginHandler extends Base
 	 */
 	protected function showSuccess( $template )
 	{
-		$_SESSION['user'] = $user;
+		$_SESSION['user'] = $this->user;
 
 		load_template( $template, array(
 			'message_color' => 'green',
